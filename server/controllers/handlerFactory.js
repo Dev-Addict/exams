@@ -43,6 +43,7 @@ exports.createOne = Model =>
     catchRequest(
         async (req, res) => {
             const doc = await Model.create(req.body);
+            doc.password = undefined;
             res.status(201).json({
                 status: 'success',
                 data: {

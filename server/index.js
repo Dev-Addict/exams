@@ -1,5 +1,10 @@
+const dotenv = require('dotenv');
 const express = require('express');
 const next = require('next');
+
+dotenv.config({
+    path: path.join(__dirname, './config.env')
+});
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});

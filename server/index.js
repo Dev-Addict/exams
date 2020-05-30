@@ -33,7 +33,7 @@ app.prepare()
             return handle(req, res);
         });
 
-        const errorController = require('./controllers/errorController');
+        server.use(errorController);
 
         const Port = process.env.PORT || 3000;
 

@@ -1,4 +1,4 @@
-const Home = () => {
+const Home = ({auth}) => {
     return (
         <div>
             Home

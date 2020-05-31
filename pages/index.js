@@ -1,8 +1,10 @@
+import BaseLayout from "../components/BaseLayout";
+
 const Home = ({auth}) => {
     return (
-        <div>
+        <BaseLayout auth={auth} title="Sign In">
             Home
-        </div>
+        </BaseLayout>
     )
 };
 

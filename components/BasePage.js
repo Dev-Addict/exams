@@ -1,9 +1,6 @@
-const BasePage = ({children, className = '', title = ''}) => {
+const BasePage = ({children, className = ''}) => {
     return (
         <div className={`base-page-container ${className}`}>
-            <div className="base-page-header-container">
-                <h1 className="base-page-header">{title}</h1>
-            </div>
             {children}
         </div>
     );

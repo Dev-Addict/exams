@@ -1,4 +1,4 @@
-const Header = ({auth, className}) => {
+const Header = ({auth}) => {
     return (
         <div className="header-container">
             <div className="header-brand">Exams</div>

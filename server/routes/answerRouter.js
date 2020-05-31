@@ -1,0 +1,17 @@
+const express = require('express');
+
+const answerController = require('../controllers/answerController');
+const authController = require('../controllers/authController');
+
+const router = express.Router();
+
+router.route('/')
+    .get(authController.protect, authController.restrictTo('admin'), answerController.getAnswers)
+    .post(authController.protect, answerController.createAnswer);
+
+router.route('/:id')
+    .get(authController.protect, authController.restrictTo('admin'), answerController.getAnswer)
+    .patch(authController.protect, answerController.updateAnswer)
+    .delete(authController.protect, answerController.deleteAnswer);
+
+module.exports = router;

@@ -40,6 +40,18 @@ const examSchema = new mongoose.Schema({
     },
     for: {
         type: [String]
+    },
+    startAt: {
+        type: Date,
+        required: [true, 'An exam must have an startAt']
+    },
+    endAt: {
+        type: Date,
+        required: [true, 'An exam must have an endAt']
+    },
+    time: {
+        type: Number,
+        required: [true, 'An exam must have an time']
     }
 });
 

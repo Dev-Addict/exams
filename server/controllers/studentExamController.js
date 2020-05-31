@@ -48,6 +48,10 @@ exports.setQuestions = catchRequest(
                 continue;
             const levelQuestions = questions.filter(({level}) => level === i);
             levelQuestions.sort((a, b) => a.used > b.used ? 1 : -1);
+            levelQuestions.splice(0, exam[`level${i}Amount`]).forEach(question => {
+                question.used += 1;
+                question.save();
+            });
             req.body.questions = [...req.body.questions, levelQuestions.splice(0, exam[`level${i}Amount`])];
         }
         next();

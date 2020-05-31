@@ -37,6 +37,9 @@ const examSchema = new mongoose.Schema({
     },
     level10Amount: {
         type: Number
+    },
+    for: {
+        type: [String]
     }
 });
 

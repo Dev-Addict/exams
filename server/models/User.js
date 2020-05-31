@@ -4,11 +4,7 @@ const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'A User Must Have a name'],
-        validate: {
-            validator: value => /^[a-zA-Z ]+$/.test(value),
-            message: ({value}) => `${value} is not a valid name`
-        }
+        required: [true, 'A User Must Have a name']
     },
     username: {
         type: String,

@@ -1,6 +1,5 @@
 const factory = require('./handlerFactory');
 const Answer = require('../models/Answer');
-const Question = require('../models/Question');
 const catchRequest = require('../utils/catchRequest');
 
 exports.getAnswers = factory.getAll(Answer);

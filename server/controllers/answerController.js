@@ -29,3 +29,17 @@ exports.checkIsCreated = catchRequest(
         });
     }
 );
+
+exports.setStudent = catchRequest(
+    (req, res, next) => {
+        req.body.student = req.user._id;
+        next();
+    }
+);
+
+exports.deleteStudent = catchRequest(
+    (req, res, next) => {
+        req.body.student = undefined;
+        next();
+    }
+);

@@ -7,11 +7,11 @@ const router = express.Router();
 
 router.route('/')
     .get(authController.protect, answerController.getAnswers)
-    .post(authController.protect, answerController.checkIsCreated, answerController.createAnswer);
+    .post(authController.protect, answerController.checkIsCreated, answerController.setStudent, answerController.createAnswer);
 
 router.route('/:id')
     .get(authController.protect, answerController.getAnswer)
-    .patch(authController.protect, answerController.updateAnswer)
+    .patch(authController.protect, answerController.deleteStudent, answerController.updateAnswer)
     .delete(authController.protect, answerController.deleteAnswer);
 
 module.exports = router;

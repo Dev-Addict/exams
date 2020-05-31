@@ -6,11 +6,11 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 
 router.route('/')
-    .get(authController.protect, authController.restrictTo('admin'), answerController.getAnswers)
+    .get(authController.protect, answerController.getAnswers)
     .post(authController.protect, answerController.createAnswer);
 
 router.route('/:id')
-    .get(authController.protect, authController.restrictTo('admin'), answerController.getAnswer)
+    .get(authController.protect, answerController.getAnswer)
     .patch(authController.protect, answerController.updateAnswer)
     .delete(authController.protect, answerController.deleteAnswer);
 

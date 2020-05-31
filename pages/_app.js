@@ -13,15 +13,15 @@ class _App extends App {
         }
         const auth = {};
 
-        const token = ((ctx.req || {}).cookies || {}).jwt || Cookie.get('jwtClient');
+        const token = ((ctx.req || {}).cookies || {}).jwtClient || Cookie.get('jwtClient');
 
         try {
             if (!token) {
                 throw new Error();
             }
-            const userRes = await exams.post('/users/checktoken', {}, {
+            const userRes = await exams.post('/users/auth/checktoken', {}, {
                 headers: {
-                    Authorization: token
+                    Authorization: `Bearer ${token}`
                 }
             });
             auth.isSignedIn = true;

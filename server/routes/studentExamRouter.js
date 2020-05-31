@@ -11,7 +11,7 @@ router.route('/')
 
 router.route('/:id')
     .get(authController.protect, studentExamController.getStudentExam)
-    .patch(authController.protect, authController.restrictTo('admin'), studentExamController.setStudent, studentExamController.updateStudentExam)
+    .patch(authController.protect, authController.restrictTo('admin'), studentExamController.updateStudentExam)
     .delete(authController.protect, authController.restrictTo('admin'), studentExamController.deleteStudentExam);
 
 module.exports = router;

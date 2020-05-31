@@ -3,14 +3,17 @@ const mongoose = require('mongoose');
 const answerSchema = new mongoose.Schema({
     question: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Question'
+        ref: 'Question',
+        required: [true, 'An answer must have an question']
     },
     answer: {
-        type: String
+        type: String,
+        required: [true, 'An answer must have an answer']
     },
     student: {
         type: mongoose.Schema.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: [true, 'An answer must have an student']
     }
 });
 

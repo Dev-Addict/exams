@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.route('/')
     .get(authController.protect, studentExamController.getStudentExams)
-    .post(authController.protect, studentExamController.checkIsCreated, studentExamController.setStudent, studentExamController.createStudentExam);
+    .post(authController.protect, studentExamController.checkIsCreated, studentExamController.setStudent, studentExamController.setQuestions, studentExamController.createStudentExam);
 
 router.route('/:id')
     .get(authController.protect, studentExamController.getStudentExam)

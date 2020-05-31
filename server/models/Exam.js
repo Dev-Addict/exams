@@ -9,34 +9,44 @@ const examSchema = new mongoose.Schema({
         type: String
     },
     level1Amount: {
-        type: Number
+        type: Number,
+        default: 0
     },
     level2Amount: {
-        type: Number
+        type: Number,
+        default: 0
     },
     level3Amount: {
-        type: Number
+        type: Number,
+        default: 0
     },
     level4Amount: {
-        type: Number
+        type: Number,
+        default: 0
     },
     level5Amount: {
-        type: Number
+        type: Number,
+        default: 0
     },
     level6Amount: {
-        type: Number
+        type: Number,
+        default: 0
     },
     level7Amount: {
-        type: Number
+        type: Number,
+        default: 0
     },
     level8Amount: {
-        type: Number
+        type: Number,
+        default: 0
     },
     level9Amount: {
-        type: Number
+        type: Number,
+        default: 0
     },
     level10Amount: {
-        type: Number
+        type: Number,
+        default: 0
     },
     for: {
         type: [String]

@@ -51,7 +51,7 @@ const questionSchema = new mongoose.Schema({
         }
     },
     level: {
-        type: String,
+        type: Number,
         required: [true, 'A question must have a level']
     },
     used: {

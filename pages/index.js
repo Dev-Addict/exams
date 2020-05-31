@@ -58,14 +58,16 @@ const Home = ({auth}) => {
                       isSubmitting,
                       handleSubmit
                   }) => (
-                    <Form onSubmit={handleSubmit}>
-                        <Field type="text" name="username" component={Input} label="Username"/>
-                        <Field type="password" name="password" component={Input} label="Password"/>
-                        <div className="error">{error}</div>
-                        <button type="submit" disabled={isSubmitting}>
-                            Sign In
-                        </button>
-                    </Form>
+                    <div className="home-form-container">
+                        <Form onSubmit={handleSubmit}>
+                            <Field type="text" name="username" component={Input} label="Username"/>
+                            <Field type="password" name="password" component={Input} label="Password"/>
+                            <div className="error">{error}</div>
+                            <button type="submit" disabled={isSubmitting}>
+                                Sign In
+                            </button>
+                        </Form>
+                    </div>
                 )}
             </Formik>
         </BaseLayout>

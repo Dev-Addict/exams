@@ -25,3 +25,53 @@ html, body {
 .base-page-container {
     color: #F9F9F9;
 }
+
+.home-form-container {
+    background-color: #F9F9F912;
+    width: 250px;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-top: 40px;
+}
+
+.home-form-container input {
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    width: 90%;
+    background-color: #1C1C1C88;
+    color: #F9F9F9;
+}
+
+.home-form-container input:focus {
+    background-color: #1C1C1C66;
+}
+
+.home-form-container .error {
+    margin-bottom: 5px;
+    color: #E63946;
+}
+
+.home-form-container button {
+    border: none;
+    border-radius: 5px;
+    background-color: #00A676;
+    padding: 10px 20px;
+    margin-top: 10px;
+    color: #F9F9F9;
+}
+
+.home-form-container button:hover {
+    background-color: #11B787;
+}

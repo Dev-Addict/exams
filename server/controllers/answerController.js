@@ -37,9 +37,10 @@ exports.setStudent = catchRequest(
     }
 );
 
-exports.deleteStudent = catchRequest(
+exports.deleteStudentAndExam = catchRequest(
     (req, res, next) => {
         req.body.student = undefined;
+        req.body.exam = undefined;
         next();
     }
 );

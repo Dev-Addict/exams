@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {Formik, Form, Field} from 'formik';
 
 import Input from "../components/Input";
+import DateInput from "./DateInput";
 
 const initialValues = {
     name: '',
@@ -62,9 +63,9 @@ const ExamForm = ({onSubmit, INITIAL_VALUES = initialValues, useValidator = true
                     <Field type="number" name="level9Amount" component={Input} label="Level 9 Questions"/>
                     <Field type="number" name="level10Amount" component={Input} label="Level 10 Questions"/>
                     <Field type="text" name="for" component={Input} label="For Roles"/>
-                    <Field type="date" name="startAt" component={Input} label="Start At"/>
-                    <Field type="date" name="endAt" component={Input} label="End At"/>
-                    <Field type="text" name="time" component={Input} label="Time"/>
+                    <Field name="startAt" component={DateInput} label="Start At"/>
+                    <Field name="endAt" component={DateInput} label="End At"/>
+                    <Field type="number" name="time" component={Input} label="Time"/>
                     <div className="error">{error}</div>
                     <button type="submit" disabled={isSubmitting}>
                         Submit

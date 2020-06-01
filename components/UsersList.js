@@ -20,6 +20,7 @@ const UsersList = ({users, auth}) => {
 
     return (
         <div className="users-list-container">
+            <h1>Users</h1>
             {renderUsers()}
         </div>
     );

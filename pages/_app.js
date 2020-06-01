@@ -7,10 +7,6 @@ import '../style/main.css';
 class _App extends App {
     static async getInitialProps({Component, router, ctx}) {
         let pageProps = {};
-
-        if (Component.getInitialProps) {
-            pageProps = await Component.getInitialProps(ctx);
-        }
         const auth = {};
 
         const token = ((ctx.req || {}).cookies || {}).jwtClient || Cookie.get('jwtClient');
@@ -28,6 +24,10 @@ class _App extends App {
             auth.user = userRes.data.data.user;
         } catch (err) {
             auth.isSignedIn = false;
+        }
+
+        if (Component.getInitialProps) {
+            pageProps = await Component.getInitialProps(ctx, auth, token);
         }
 
         return {pageProps, auth};

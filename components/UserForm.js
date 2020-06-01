@@ -10,10 +10,10 @@ const initialValues = {
     roles: ''
 };
 
-const UserForm = ({onSubmit, INITIAL_VALUES = initialValues}) => {
+const UserForm = ({onSubmit, INITIAL_VALUES = initialValues, useValidator = true}) => {
     const [error, setError] = useState('');
 
-    const validate = values => {
+    const validate = useValidator ? values => {
         const errors = {};
 
         Object.entries(values).forEach(([key, value]) => {
@@ -23,6 +23,8 @@ const UserForm = ({onSubmit, INITIAL_VALUES = initialValues}) => {
         });
 
         return errors;
+    } : () => {
+        return {};
     };
 
     return (

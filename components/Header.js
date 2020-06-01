@@ -1,4 +1,5 @@
 import Router from "next/router";
+import Link from "next/link";
 import Cookie from 'js-cookie';
 
 import exams from "../api/exams";
@@ -6,11 +7,17 @@ import exams from "../api/exams";
 const Header = ({auth}) => {
     return (
         <div className="header-container">
-            <div className="header-brand">Exams</div>
+            <Link href="/">
+                <a className="link">
+                    <div className="header-brand">Exams</div>
+                </a>
+            </Link>
             {auth.isSignedIn &&
             <div className="header-dashboard">
-                Dashboard
-                <div className="header-sign-out"
+                <Link href="/dashboard">
+                    <a className="link">Dashboard</a>
+                </Link>
+                <div className="sign-out"
                      onClick={() => {
                          exams.post('/users/auth/singout');
                          Cookie.remove('jwtClient');

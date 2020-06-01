@@ -87,6 +87,7 @@ form button:disabled {
     background-color: #2191FB;
     display: inline-block;
     padding: 5px;
+    margin: 10px;
 }
 
 .users-list-user-card table {
@@ -101,4 +102,27 @@ form button:disabled {
     border: 2px solid #F9F9F9;
     padding: 10px;
     white-space: pre;
+}
+
+.link {
+    text-decoration: none;
+    color: #F9F9F9;
+}
+
+.sign-out {
+    cursor: pointer;
+}
+
+.buttons-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.buttons-container a {
+    text-decoration: none;
+    color: #F9F9F9;
+    background-color: #2191FB;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 10px 0;
 }

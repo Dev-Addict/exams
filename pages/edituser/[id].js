@@ -6,6 +6,13 @@ import UserForm from "../../components/UserForm";
 import exams from "../../api/exams";
 
 const EditUser = ({auth, INITIAL_VALUES, id}) => {
+    if (process.browser && (!INITIAL_VALUES || !(INITIAL_VALUES || {}).rote)) {
+        Router.push('/dashboard');
+        return <div/>;
+    }
+    if (!INITIAL_VALUES || !(INITIAL_VALUES || {}).rote) {
+        return <div/>;
+    }
     const onSubmit = (values, {setSubmitting}, setError) => {
         const newValues = {...values};
         Object.entries(newValues).forEach(([key, value]) => {
@@ -53,11 +60,9 @@ EditUser.getInitialProps = async (context, {user: authUser}, token) => {
             }
         }
         return {
-            user
         };
     }
     return {
-        user
     };
 };
 

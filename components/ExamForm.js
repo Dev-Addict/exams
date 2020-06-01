@@ -2,24 +2,25 @@ import {useState} from 'react';
 import {Formik, Form, Field} from 'formik';
 
 import Input from "../components/Input";
-import DateInput from "./DateInput";
 
 const initialValues = {
     name: '',
     description: '',
-    level1Amount: '',
-    level2Amount: '',
-    level3Amount: '',
-    level4Amount: '',
-    level5Amount: '',
-    level6Amount: '',
-    level7Amount: '',
-    level8Amount: '',
-    level9Amount: '',
-    level10Amount: '',
+    level1Amount: 0,
+    level2Amount: 0,
+    level3Amount: 0,
+    level4Amount: 0,
+    level5Amount: 0,
+    level6Amount: 0,
+    level7Amount: 0,
+    level8Amount: 0,
+    level9Amount: 0,
+    level10Amount: 0,
     for: '',
-    startAt: '',
-    endAt: '',
+    startAtDate: '',
+    startAtTime: '',
+    endAtDate: '',
+    endAtTime: '',
     time: ''
 };
 
@@ -30,7 +31,7 @@ const ExamForm = ({onSubmit, INITIAL_VALUES = initialValues, useValidator = true
         const errors = {};
 
         Object.entries(values).forEach(([key, value]) => {
-            if (!value) {
+            if (!value && value !== 0) {
                 errors[key] = `${key} is required.`;
             }
         });
@@ -63,8 +64,10 @@ const ExamForm = ({onSubmit, INITIAL_VALUES = initialValues, useValidator = true
                     <Field type="number" name="level9Amount" component={Input} label="Level 9 Questions"/>
                     <Field type="number" name="level10Amount" component={Input} label="Level 10 Questions"/>
                     <Field type="text" name="for" component={Input} label="For Roles"/>
-                    <Field name="startAt" component={DateInput} label="Start At"/>
-                    <Field name="endAt" component={DateInput} label="End At"/>
+                    <Field type="date" name="startAtDate" component={Input} label="Start At"/>
+                    <Field type="time" name="startAtTime" component={Input} label=""/>
+                    <Field type="date" name="endAtDate" component={Input} label="End At"/>
+                    <Field type="time" name="endAtTime" component={Input} label=""/>
                     <Field type="number" name="time" component={Input} label="Time"/>
                     <div className="error">{error}</div>
                     <button type="submit" disabled={isSubmitting}>

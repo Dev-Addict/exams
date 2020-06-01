@@ -29,9 +29,9 @@ form {
     padding: 20px;
     border-radius: 10px;
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     text-align: center;
     margin-top: 40px;
     color: #F9F9F9;
@@ -54,6 +54,10 @@ form input {
 
 form input:focus {
     background-color: #1C1C1C66;
+}
+
+form label {
+    display: block;
 }
 
 .error {
@@ -145,4 +149,14 @@ form button:disabled {
     display: block;
     margin: 10px 0;
     width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
 }

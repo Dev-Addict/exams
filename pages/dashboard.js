@@ -4,7 +4,7 @@ import BaseLayout from "../components/BaseLayout";
 import AdminDashboard from "../components/AdminDashboard";
 import exams from "../api/exams";
 
-const Dashboard = ({auth}) => {
+const Dashboard = ({auth, users}) => {
     if (process.browser && !auth.isSignedIn) {
         Router.push('/');
         return (<div/>);
@@ -14,7 +14,7 @@ const Dashboard = ({auth}) => {
     }
 
     if (auth.user.rote === 'admin') {
-        return (<AdminDashboard auth={auth}/>);
+        return (<AdminDashboard auth={auth} users={users}/>);
     }
 
     return (

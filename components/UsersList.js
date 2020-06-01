@@ -1,3 +1,28 @@
-const UsersList = ({users, auth}) => {};
+const UsersList = ({users, auth}) => {
+    const renderUsers = () => users.filter(user => user.rote === 'student').map(user => (
+        <div className="users-list-user-card" key={user._id}>
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td>{user.name}</td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td>{user.username}</td>
+                </tr>
+                <tr>
+                    <td>Roles</td>
+                    <td>{user.roles.join(', ')}</td>
+                </tr>
+            </table>
+        </div>
+    ));
+
+    return (
+        <div className="users-list-container">
+            {renderUsers()}
+        </div>
+    );
+};
 
 export default UsersList;

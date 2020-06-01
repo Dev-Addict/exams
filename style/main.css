@@ -75,3 +75,28 @@ html, body {
 .home-form-container button:hover {
     background-color: #11B787;
 }
+
+.users-list-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.users-list-user-card {
+    background-color: #2191FB;
+    display: inline-block;
+    padding: 5px;
+}
+
+.users-list-user-card table {
+    width: 250px;
+    text-align: left;
+    border-collapse: collapse;
+    table-layout: fixed;
+    overflow: hidden;
+}
+
+.users-list-user-card table tr td {
+    border: 2px solid #F9F9F9;
+    padding: 10px;
+    white-space: pre;
+}

@@ -1,9 +1,10 @@
 import BaseLayout from "../components/BaseLayout";
+import UsersList from "./UsersList";
 
-const AdminDashboard = ({auth}) => {
+const AdminDashboard = ({auth, users}) => {
     return (
         <BaseLayout auth={auth} title="Admin Dashboard">
-            AdminDashboard
+            <UsersList auth={auth} users={users}/>
         </BaseLayout>
     );
 };

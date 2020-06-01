@@ -2,6 +2,7 @@ const UsersList = ({users, auth}) => {
     const renderUsers = () => users.filter(user => user.rote === 'student').map(user => (
         <div className="users-list-user-card" key={user._id}>
             <table>
+                <tbody>
                 <tr>
                     <td>Name</td>
                     <td>{user.name}</td>
@@ -14,6 +15,7 @@ const UsersList = ({users, auth}) => {
                     <td>Roles</td>
                     <td>{user.roles.join(', ')}</td>
                 </tr>
+                </tbody>
             </table>
         </div>
     ));

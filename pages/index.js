@@ -37,15 +37,13 @@ const Home = ({auth}) => {
 
     const onSubmit = (values, {setSubmitting}) => {
         setSubmitting(true);
-        exams.post('/users/auth/signin', values)
-            .then(res => {
-                Cookie.set('jwtClient', res.data.token);
-                Router.push('/dashboard');
-            })
-            .catch(err => {
-                setError(err.response.data.message);
-                setSubmitting(false);
-            });
+        exams.post('/users/auth/signin', values).then(res => {
+            Cookie.set('jwtClient', res.data.token);
+            Router.push('/dashboard');
+        }).catch(err => {
+            setError(err.response.data.message);
+            setSubmitting(false);
+        });
     };
 
     return (

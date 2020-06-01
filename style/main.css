@@ -56,9 +56,10 @@ form input:focus {
     background-color: #1C1C1C66;
 }
 
-form .error {
+.error {
     margin-bottom: 5px;
     color: #E63946;
+    font-weight: bold;
 }
 
 form button {
@@ -125,4 +126,23 @@ form button:disabled {
     padding: 10px 20px;
     border-radius: 10px;
     margin: 10px 0;
+}
+
+.users-list-user-edit {
+    color: #F9F9F9;
+    background-color: #00A676;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: block;
+    margin: 10px 0;
+}
+
+.users-list-user-delete {
+    color: #F9F9F9;
+    background-color: #E63946;
+    border: none;
+    padding: 5px 10px;
+    display: block;
+    margin: 10px 0;
+    width: 100%;
 }

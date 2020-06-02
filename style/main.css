@@ -83,19 +83,19 @@ form button:disabled {
     background-color: #22C898;
 }
 
-.users-list-container {
+.list-container {
     padding: 20px;
     text-align: center;
 }
 
-.users-list-user-card {
+.list-card {
     background-color: #2191FB;
     display: inline-block;
     padding: 5px;
     margin: 10px;
 }
 
-.users-list-user-card table {
+.list-card table {
     width: 250px;
     text-align: left;
     border-collapse: collapse;
@@ -103,7 +103,7 @@ form button:disabled {
     overflow: hidden;
 }
 
-.users-list-user-card table tr td {
+.list-card table tr td {
     border: 2px solid #F9F9F9;
     padding: 10px;
     white-space: pre;
@@ -129,10 +129,10 @@ form button:disabled {
     background-color: #2191FB;
     padding: 10px 20px;
     border-radius: 10px;
-    margin: 10px 0;
+    margin: 0 10px;
 }
 
-.users-list-user-edit {
+.list-edit {
     color: #F9F9F9;
     background-color: #00A676;
     text-decoration: none;
@@ -141,7 +141,7 @@ form button:disabled {
     margin: 10px 0;
 }
 
-.users-list-user-delete {
+.list-delete {
     color: #F9F9F9;
     background-color: #E63946;
     border: none;

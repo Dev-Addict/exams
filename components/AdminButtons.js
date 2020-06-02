@@ -6,6 +6,9 @@ const AdminButtons = () => {
             <Link href="/createuser">
                 <a>Create User</a>
             </Link>
+            <Link href="/createexam">
+                <a>Create Exam</a>
+            </Link>
         </div>
     );
 };

@@ -10,7 +10,7 @@ const UsersList = ({users, auth}) => {
     const renderUsers = () => users.filter(user => user.rote === 'student').map(user => {
         const [error, setError] = useState('');
         return (
-            <div className="users-list-user-card" key={user._id}>
+            <div className="list-card" key={user._id}>
                 <table>
                     <tbody>
                     <tr>
@@ -28,15 +28,15 @@ const UsersList = ({users, auth}) => {
                     </tbody>
                 </table>
                 <Link href={`/edituser/${user._id}`}>
-                    <a className="users-list-user-edit">Edit</a>
+                    <a className="list-edit">Edit</a>
                 </Link>
-                <button className="users-list-user-delete" onClick={() => {
+                <button className="list-delete" onClick={() => {
                     exams.delete(`/users/${user._id}`, {
                         headers: {
                             authorization: `Bearer ${Cookie.get('jwtClient')}`
                         }
                     }).then(res => {
-                        setTimeout(() => Router.push('/dashboard'), 1);
+                        setTimeout(() => Router.push('/dashboard'), 10);
                     }).catch(err => {
                         setError(err.response.data.message);
                     });
@@ -48,7 +48,7 @@ const UsersList = ({users, auth}) => {
     });
 
     return (
-        <div className="users-list-container">
+        <div className="list-container">
             <h1>Users</h1>
             {renderUsers()}
         </div>

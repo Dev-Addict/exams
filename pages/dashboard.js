@@ -4,7 +4,7 @@ import BaseLayout from "../components/BaseLayout";
 import AdminDashboard from "../components/AdminDashboard";
 import exams from "../api/exams";
 
-const Dashboard = ({auth, users}) => {
+const Dashboard = ({auth, users, exams}) => {
     if (process.browser && !auth.isSignedIn) {
         Router.push('/');
         return (<div/>);
@@ -14,7 +14,7 @@ const Dashboard = ({auth, users}) => {
     }
 
     if (auth.user.rote === 'admin') {
-        return (<AdminDashboard auth={auth} users={users}/>);
+        return (<AdminDashboard auth={auth} users={users} exams={exams}/>);
     }
 
     return (
@@ -27,6 +27,7 @@ const Dashboard = ({auth, users}) => {
 
 Dashboard.getInitialProps = async (context, {user}, token) => {
     let users = [];
+    let examsData = [];
     if (user) {
         if (user.rote === 'admin') {
             try {
@@ -39,8 +40,19 @@ Dashboard.getInitialProps = async (context, {user}, token) => {
             } catch (err) {
                 users = [];
             }
+            try {
+                const res = await exams.get('/exams', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                examsData = res.data.data.docs;
+            } catch (err) {
+                examsData = [];
+            }
             return {
                 users,
+                exams: examsData,
                 token
             }
         }

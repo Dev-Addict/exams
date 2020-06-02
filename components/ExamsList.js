@@ -78,6 +78,9 @@ const ExamsList = ({exams, auth}) => {
                     </tr>
                     </tbody>
                 </table>
+                <Link href={`/exams/${exam._id}`}>
+                    <a className="list-edit">Manage</a>
+                </Link>
                 <Link href={`/editexam/${exam._id}`}>
                     <a className="list-edit">Edit</a>
                 </Link>

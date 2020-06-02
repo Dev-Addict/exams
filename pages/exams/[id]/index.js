@@ -1,5 +1,6 @@
 import ErrorPage from 'next/error';
 
+import ExamButtons from "../../../components/ExamButtons";
 import exams from "../../../api/exams";
 
 const Exam = ({id}) => {
@@ -9,7 +10,7 @@ const Exam = ({id}) => {
         );
     return (
         <div>
-            {id}
+            <ExamButtons id={id}/>
         </div>
     );
 };
@@ -21,9 +22,9 @@ Exam.getInitialProps = async ({query: {id}, res: response}, auth, token) => {
         return {};
     }
     try {
-        const res = exams.get(`/exams/${id}`, {
+        await exams.get(`/exams/${id}`, {
             headers: {
-                Authorization: token
+                Authorization: `Bearer ${token}`
             }
         });
     } catch (err) {

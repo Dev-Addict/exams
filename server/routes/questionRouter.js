@@ -29,7 +29,7 @@ router.route('/')
             name: 'option4Asset',
             maxCount: 1
         }
-    ]), questionController.createQuestion);
+    ]), questionController.saveAssets, questionController.createQuestion);
 
 router.route('/:id')
     .get(authController.protect, questionController.getQuestion)
@@ -54,7 +54,7 @@ router.route('/:id')
             name: 'option4Asset',
             maxCount: 1
         }
-    ]), questionController.updateQuestion)
+    ]), questionController.saveAssets, questionController.updateQuestion)
     .delete(authController.protect, authController.restrictTo('admin'), questionController.deleteQuestion);
 
 module.exports = router;

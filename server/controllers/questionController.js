@@ -62,6 +62,7 @@ exports.saveAssets = catchRequest(
                     .jpeg({ quality: 90 })
                     .toFile(`uploads/optionassets/${req.files.option4Asset[0].filename}`);
             }
+            next();
         }
     }
 );

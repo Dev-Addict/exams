@@ -1,7 +1,7 @@
 import Router from "next/router";
 
-import BaseLayout from "../components/BaseLayout";
 import AdminDashboard from "../components/AdminDashboard";
+import StudentDashboard from "../components/StudentDashboard";
 import exams from "../api/exams";
 
 const Dashboard = ({auth, users, exams}) => {
@@ -18,9 +18,7 @@ const Dashboard = ({auth, users, exams}) => {
     }
 
     return (
-        <BaseLayout auth={auth} title="Dashboard">
-            Dashboard
-        </BaseLayout>
+        <StudentDashboard auth={auth}/>
     );
 };
 

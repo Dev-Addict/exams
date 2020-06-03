@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
         validate: {
             validator: value => /^(?=[a-zA-Z0-9._]{4,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/.test(value),
             message: ({value}) => `${value} is not a valid username`
-        }
+        },
+        unique: true
     },
     rote: {
         type: String,

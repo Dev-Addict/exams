@@ -2,21 +2,21 @@ import {useState} from 'react';
 
 import CustomInput from "./CustomInput";
 
-const QuestionForm = ({onSubmit}) => {
+const QuestionForm = ({onSubmit, INITIAL_VALUES = {}}) => {
     const [error, setError] = useState('');
-    const [question, setQuestion] = useState('');
-    const [questionAsset, setQuestionAsset] = useState('');
-    const [type, setType] = useState('');
-    const [option1, setOption1] = useState('');
-    const [option1Asset, setOption1Asset] = useState('');
-    const [option2, setOption2] = useState('');
-    const [option2Asset, setOption2Asset] = useState('');
-    const [option3, setOption3] = useState('');
-    const [option3Asset, setOption3Asset] = useState('');
-    const [option4, setOption4] = useState('');
-    const [option4Asset, setOption4Asset] = useState('');
-    const [correctOption, setCorrectOption] = useState('');
-    const [level, setLevel] = useState(0);
+    const [question, setQuestion] = useState('' || INITIAL_VALUES.question);
+    const [questionAsset, setQuestionAsset] = useState('' || INITIAL_VALUES.questionAsset);
+    const [type, setType] = useState('' || INITIAL_VALUES.type);
+    const [option1, setOption1] = useState('' || INITIAL_VALUES.option1);
+    const [option1Asset, setOption1Asset] = useState('' || INITIAL_VALUES.option1Asset);
+    const [option2, setOption2] = useState('' || INITIAL_VALUES.option2);
+    const [option2Asset, setOption2Asset] = useState('' || INITIAL_VALUES.option2Asset);
+    const [option3, setOption3] = useState('' || INITIAL_VALUES.option3);
+    const [option3Asset, setOption3Asset] = useState('' || INITIAL_VALUES.option3Asset);
+    const [option4, setOption4] = useState('' || INITIAL_VALUES.option4);
+    const [option4Asset, setOption4Asset] = useState('' || INITIAL_VALUES.option4Asset);
+    const [correctOption, setCorrectOption] = useState('' || INITIAL_VALUES.correctOption);
+    const [level, setLevel] = useState(0 || INITIAL_VALUES.level);
     const [isSubmitting, setSubmitting] = useState(false);
 
     const handleSubmit = event => {

@@ -2,7 +2,7 @@ import Cookie from "js-cookie";
 import Router from "next/router";
 
 import BaseLayout from "../../components/BaseLayout";
-import ExamForm from "../../components/ExamForm";
+import QuestionForm from "../../components/QuestionForm";
 import exams from "../../api/exams";
 
 const EditQuestion = ({auth, INITIAL_VALUES, id}) => {
@@ -13,19 +13,15 @@ const EditQuestion = ({auth, INITIAL_VALUES, id}) => {
     if (!INITIAL_VALUES) {
         return <div/>;
     }
-    const onSubmit = (values, {setSubmitting}, setError) => {
+    const onSubmit = (values, setSubmitting, setError) => {
         setSubmitting(true);
-        if (values.startAtDate && values.startAtTime)
-            values.startAt = new Date(`${values.startAtDate}T${values.startAtTime}`);
-        if (values.endAtDate && values.endAtTime)
-            values.endAt = new Date(`${values.endAtDate}T${values.endAtTime}`);
-        const newValues = {...values};
-        Object.entries(newValues).forEach(([key, value]) => {
-            if (!value)
-                newValues[key] = undefined;
+        const formData = new FormData();
+        Object.entries(values).forEach(([key, value]) => {
+            if (value)
+                formData.append(key, value)
         });
-        exams.patch(`/exams/${id}`,
-            newValues, {
+        exams.patch(`/questions/${id}`,
+            formData, {
                 headers: {
                     Authorization: `Bearer ${Cookie.get('jwtClient')}`
                 }
@@ -39,27 +35,27 @@ const EditQuestion = ({auth, INITIAL_VALUES, id}) => {
 
     return (
         <BaseLayout auth={auth} title="Edit Question">
-            <ExamForm onSubmit={onSubmit} INITIAL_VALUES={INITIAL_VALUES} useValidator={false}/>
+            <QuestionForm onSubmit={onSubmit} INITIAL_VALUES={INITIAL_VALUES}/>
         </BaseLayout>
     );
 };
 
 EditQuestion.getInitialProps = async (context, {user}, token) => {
-    let exam;
+    let question;
     if (token) {
         if (user.rote === 'admin') {
             try {
-                const res = await exams.get(`/exams/${context.query.id}`, {
+                const res = await exams.get(`/questions/${context.query.id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
-                exam = res.data.data.doc;
+                question = res.data.data.doc;
             } catch (err) {
-                exam = undefined;
+                question = undefined;
             }
             return {
-                INITIAL_VALUES: exam,
+                INITIAL_VALUES: question,
                 id: context.query.id
             }
         }

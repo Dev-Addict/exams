@@ -12,7 +12,6 @@ const CreateQuestion = ({auth, id}) => {
             <ErrorPage statusCode={404}/>
         );
     const onSubmit = (values, setSubmitting, setError) => {
-        console.log(values);
         setSubmitting(true);
         const formData = new FormData();
         Object.entries(values).forEach(([key, value]) => {

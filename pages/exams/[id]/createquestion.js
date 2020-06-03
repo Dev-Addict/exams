@@ -26,7 +26,7 @@ const CreateQuestion = ({auth, id}) => {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(res => {
-            Router.push('/dashboard');
+            Router.push(`/exams/${id}`);
         }).catch(err => {
             setError(err.response.data.message);
             setSubmitting(false);

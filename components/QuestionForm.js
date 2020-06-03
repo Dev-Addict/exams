@@ -16,7 +16,7 @@ const QuestionForm = ({onSubmit}) => {
     const [option4, setOption4] = useState('');
     const [option4Asset, setOption4Asset] = useState('');
     const [correctOption, setCorrectOption] = useState('');
-    const [level, setLevel] = useState('');
+    const [level, setLevel] = useState(0);
     const [isSubmitting, setSubmitting] = useState(false);
 
     const handleSubmit = event => {

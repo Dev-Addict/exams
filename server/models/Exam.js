@@ -49,7 +49,7 @@ const examSchema = new mongoose.Schema({
         default: 0
     },
     for: {
-        type: [String]
+        type: String
     },
     startAt: {
         type: Date,

@@ -18,7 +18,7 @@ const Dashboard = ({auth, users, exams}) => {
     }
 
     return (
-        <StudentDashboard auth={auth}/>
+        <StudentDashboard auth={auth} exams={exams}/>
     );
 };
 
@@ -50,12 +50,23 @@ Dashboard.getInitialProps = async (context, {user}, token) => {
             }
             return {
                 users,
-                exams: examsData,
+                exams: examsData.filter(exam => user.roles.includes(exam.for)),
                 token
             }
         }
+        try {
+            const res = await exams.get('/exams', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            examsData = res.data.data.docs;
+        } catch (err) {
+            examsData = [];
+        }
         return {
             users,
+            exams: examsData,
             token
         };
     }

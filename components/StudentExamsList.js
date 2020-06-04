@@ -21,7 +21,9 @@ const StudentExamsList = ({exams}) => {
                     At: {new Date(exam.endAt).toDateString()} {new Date(exam.endAt).getHours()}:{new Date(exam.endAt).getMinutes()}
                 </div>
                 {new Date(exam.startAt).getTime() > Date.now() > new Date(exam.endAt) &&
-                <button className="student-card-button" disabled={isSubmitting}>
+                <button className="student-card-button" disabled={isSubmitting} onClick={() => {
+                    setSubmitting(true);
+                }}>
                     Join Exam
                 </button>
                 }

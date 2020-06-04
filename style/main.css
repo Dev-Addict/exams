@@ -204,3 +204,7 @@ input[type=file] {
 .student-card-button:disabled {
     background-color: #22C898;
 }
+
+.student-card {
+    margin: 20px;
+}

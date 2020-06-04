@@ -62,7 +62,7 @@ const ExamsList = ({exams, auth}) => {
                     </tr>
                     <tr>
                         <td>For</td>
-                        <td>{exam.for.join(', ')}</td>
+                        <td>{exam.for}</td>
                     </tr>
                     <tr>
                         <td>Start At</td>

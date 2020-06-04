@@ -7,11 +7,13 @@ const studentExamSchema = new mongoose.Schema({
     },
     exam: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Exam'
+        ref: 'Exam',
+        required: true
     },
     student: {
         type: mongoose.Schema.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     }
 });
 

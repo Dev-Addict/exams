@@ -18,7 +18,7 @@ exports.checkIsCreated = catchRequest(
     async (req, res, next) => {
         const student = req.user._id;
         const exam = req.body.exam;
-        const studentExam = StudentExam.findOne({student, exam});
+        const studentExam = await StudentExam.findOne({student, exam});
         if (!studentExam) {
             return next();
         }
@@ -31,18 +31,11 @@ exports.checkIsCreated = catchRequest(
     }
 );
 
-exports.setStudent = catchRequest(
-    (req, res, next) => {
-        req.body.student = req.user._id;
-        next();
-    }
-);
-
 exports.setQuestions = catchRequest(
     async (req, res, next) => {
         req.body.questions = [];
-        const exam = Exam.findById(req.body.exam);
-        const questions = Question.find({exam: exam._id});
+        const exam = await Exam.findById(req.body.exam);
+        const questions = await Question.find({exam: exam._id});
         for (let i = 1; i <= 10; i++) {
             if (i === 0)
                 continue;
@@ -52,7 +45,7 @@ exports.setQuestions = catchRequest(
                 question.used += 1;
                 question.save();
             });
-            req.body.questions = [...req.body.questions, levelQuestions.splice(0, exam[`level${i}Amount`])];
+            req.body.questions = [...req.body.questions, ...levelQuestions.splice(0, exam[`level${i}Amount`])];
         }
         next();
     }

@@ -1,8 +1,13 @@
 import {useState} from 'react';
+import Router from "next/router";
+import Cookie from 'js-cookie';
 
-const StudentExamsList = ({exams}) => {
+import examsAPI from "../api/exams";
+
+const StudentExamsList = ({exams, user}) => {
     const [isSubmitting, setSubmitting] = useState(false);
     const renderExams = () => exams.map(exam => {
+        const [error, setError] = useState('');
         return (
             <div className="student-card" key={exam._id}>
                 <div className="student-card-title">{exam.name}<sub>{exam.description}</sub></div>
@@ -20,13 +25,27 @@ const StudentExamsList = ({exams}) => {
                     End
                     At: {new Date(exam.endAt).toDateString()} {new Date(exam.endAt).getHours()}:{new Date(exam.endAt).getMinutes()}
                 </div>
-                {new Date(exam.startAt).getTime() > Date.now() > new Date(exam.endAt) &&
+                {new Date(exam.startAt).getTime() < Date.now() && new Date(exam.endAt).getTime() > Date.now() &&
                 <button className="student-card-button" disabled={isSubmitting} onClick={() => {
                     setSubmitting(true);
+                    examsAPI.post('/studentexams', {
+                        exam : exam._id,
+                        student: user._id
+                    }, {
+                        headers: {
+                            Authorization: Cookie.get('jwtClient')
+                        }
+                    }).then(res => {
+                        Router.push(`/studentexams/${res.data.data.doc._id}`);
+                    }).catch(err => {
+                        setSubmitting(false);
+                        setError(err.response.data.message);
+                    });
                 }}>
                     Join Exam
                 </button>
                 }
+                <div className="error">{error}</div>
             </div>
         )
     });

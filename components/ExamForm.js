@@ -63,7 +63,7 @@ const ExamForm = ({onSubmit, INITIAL_VALUES = initialValues, useValidator = true
                     <Field type="number" name="level8Amount" component={Input} label="Level 8 Questions"/>
                     <Field type="number" name="level9Amount" component={Input} label="Level 9 Questions"/>
                     <Field type="number" name="level10Amount" component={Input} label="Level 10 Questions"/>
-                    <Field type="text" name="for" component={Input} label="For Roles"/>
+                    <Field type="text" name="for" component={Input} label="For Role"/>
                     <Field type="date" name="startAtDate" component={Input} label="Start At"/>
                     <Field type="time" name="startAtTime" component={Input} label=""/>
                     <Field type="date" name="endAtDate" component={Input} label="End At"/>

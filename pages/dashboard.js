@@ -4,7 +4,7 @@ import AdminDashboard from "../components/AdminDashboard";
 import StudentDashboard from "../components/StudentDashboard";
 import exams from "../api/exams";
 
-const Dashboard = ({auth, users, exams}) => {
+const Dashboard = ({auth, users, exams, user}) => {
     if (process.browser && !auth.isSignedIn) {
         Router.push('/');
         return (<div/>);
@@ -18,7 +18,7 @@ const Dashboard = ({auth, users, exams}) => {
     }
 
     return (
-        <StudentDashboard auth={auth} exams={exams}/>
+        <StudentDashboard auth={auth} exams={exams} user={user}/>
     );
 };
 
@@ -50,7 +50,7 @@ Dashboard.getInitialProps = async (context, {user}, token) => {
             }
             return {
                 users,
-                exams: examsData.filter(exam => user.roles.includes(exam.for)),
+                exams: examsData,
                 token
             }
         }
@@ -66,8 +66,9 @@ Dashboard.getInitialProps = async (context, {user}, token) => {
         }
         return {
             users,
-            exams: examsData,
-            token
+            exams: examsData.filter(exam => user.roles.includes(exam.for)),
+            token,
+            user
         };
     }
     return {

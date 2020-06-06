@@ -37,7 +37,7 @@ exports.setQuestions = catchRequest(
         const exam = await Exam.findById(req.body.exam);
         const questions = await Question.find({exam: exam._id});
         for (let i = 1; i <= 10; i++) {
-            if (i === 0)
+            if (exam[`level${i}Amount`] === 0)
                 continue;
             const levelQuestions = questions.filter(({level}) => level === i);
             levelQuestions.sort((a, b) => a.used > b.used ? 1 : -1);

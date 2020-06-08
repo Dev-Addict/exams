@@ -37,7 +37,22 @@ const Question =
             setReady(true);
         };
 
-        const onSubmit = (value, setError, setReady) => {};
+        const onSubmit = async (value, setError, setReady) => {
+            setReady(false);
+            try {
+                await exams.post('/answers', {
+                    question: questionId,
+                    answer: value
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+            } catch (err) {
+                setError(err.response.data.message);
+            }
+            setReady(true);
+        };
 
         return (
             <div className="question-block">

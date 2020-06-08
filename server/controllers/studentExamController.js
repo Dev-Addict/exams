@@ -55,7 +55,20 @@ exports.setDates = catchRequest(
     async (req, res, next) => {
         req.body.startDate = new Date();
         const exam = await Exam.findById(req.body.exam);
-        req.body.endDate = new Date(Date.now() + exam.time * 60000);
+        req.body.endDate = new Date(Math.min(Date.now() + exam.time * 60000, exam.endAt.getTime()));
         next();
+    }
+);
+
+exports.checkDate = catchRequest(
+    async (req, res, next) => {
+        const exam = await Exam.findById(req.body.exam);
+        if (exam.startAt.getTime() < Date.now() < exam.endAt.getTime()) {
+            return next();
+        }
+        res.status(400).json({
+            status: 'fail',
+            message: 'Too late or too soon to start exam'
+        });
     }
 );

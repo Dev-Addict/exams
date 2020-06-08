@@ -38,6 +38,8 @@ app.prepare()
 
         server.use('/api/v1', APIRouter);
 
+        server.use('/download', express.static('uploads'));
+
         server.get('*', (req, res) => {
             return handle(req, res);
         });

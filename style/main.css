@@ -208,3 +208,72 @@ input[type=file] {
 .student-card {
     margin: 20px;
 }
+
+.questions-container {
+    padding: 30px;
+}
+
+.question-block {
+    padding: 20px;
+    border: 2px solid #F9F9F988;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.question-question {
+    border-bottom: 1px solid #F9F9F944;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.question-question div {
+    font-size: 20px;
+    margin: 10px;
+}
+
+.question-question img {
+    width: 100%;
+    height: auto;
+}
+
+.option-group img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.question-block input[type=text] {
+    border: 2px solid #F9F9F988;
+    display: block;
+    width: 95%;
+    padding: 10px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: #F9F9F9;
+    background-color: #F9F9F911;
+}
+
+.question-block input[type=text]:focus {
+    background-color: #F9F9F906;
+    border: 2px solid #F9F9F9AA;
+}
+
+.question-block button {
+    background-color: #2191FB;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #F9F9F9;
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+.question-block button:disabled {
+    opacity: 0.5;
+}

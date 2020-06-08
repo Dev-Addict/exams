@@ -15,7 +15,7 @@ const TestRadioInput = ({options, onSelected, questionNum, initial}) => {
                 <label>{options.option1}</label>
                 {
                     options.option1Asset &&
-                    <img src={options.option1Asset} alt={options.option1}/>
+                    <img src={`http://localhost:3000/download/optionassets/${options.option1Asset}`} alt={options.option1}/>
                 }
             </div>
             <div className="option-group">
@@ -26,7 +26,7 @@ const TestRadioInput = ({options, onSelected, questionNum, initial}) => {
                 <label>{options.option2}</label>
                 {
                     options.option1Asset &&
-                    <img src={options.option2Asset} alt={options.option2}/>
+                    <img src={`http://localhost:3000/download/optionassets/${options.option2Asset}`} alt={options.option2}/>
                 }
             </div>
             <div className="option-group">
@@ -37,7 +37,7 @@ const TestRadioInput = ({options, onSelected, questionNum, initial}) => {
                 <label>{options.option3}</label>
                 {
                     options.option1Asset &&
-                    <img src={options.option3Asset} alt={options.option3}/>
+                    <img src={`http://localhost:3000/download/optionassets/${options.option3Asset}`} alt={options.option3}/>
                 }
             </div>
             <div className="option-group">
@@ -48,7 +48,7 @@ const TestRadioInput = ({options, onSelected, questionNum, initial}) => {
                 <label>{options.option4}</label>
                 {
                     options.option1Asset &&
-                    <img src={options.option4Asset} alt={options.option4}/>
+                    <img src={`http://localhost:3000/download/optionassets/${options.option4Asset}`} alt={options.option4}/>
                 }
             </div>
             <div className="error">{error}</div>

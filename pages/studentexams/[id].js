@@ -1,9 +1,10 @@
 import ErrorPage from "next/error";
 
+import BaseLayout from "../../components/BaseLayout";
 import Question from "../../components/Question";
 import exams from "../../api/exams";
 
-const StudentExam = ({token, studentExam, questions, answers, student}) => {
+const StudentExam = ({token, studentExam, questions, answers, student, auth}) => {
     if (!studentExam)
         return (
             <ErrorPage statusCode={404}/>
@@ -18,9 +19,11 @@ const StudentExam = ({token, studentExam, questions, answers, student}) => {
     });
 
     return (
-        <div>
-            {renderQuestions()}
-        </div>
+        <BaseLayout auth={auth} title="Exam">
+            <div className="questions-container">
+                {renderQuestions()}
+            </div>
+        </BaseLayout>
     );
 };
 

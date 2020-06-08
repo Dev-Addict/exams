@@ -62,23 +62,23 @@ const Question =
                 <div className="question-question">
                     <div>{question}</div>
                     {questionAsset &&
-                    <img src={questionAsset} alt={question}/>
-                    }
-                    {
-                        type === 'test' ?
-                            <TestRadioInput options={{
-                                option1,
-                                option1Asset,
-                                option2,
-                                option2Asset,
-                                option3,
-                                option3Asset,
-                                option4,
-                                option4Asset
-                            }} questionNum={questionNum} onSelected={onSelected} initial={initial}/> :
-                            <DescriptiveQuestionInput questionNum={questionNum} onSubmit={onSubmit} initial={initial}/>
+                    <img src={`http://localhost:3000/download/questionassets/${questionAsset}`} alt={question}/>
                     }
                 </div>
+                {
+                    type === 'test' ?
+                        <TestRadioInput options={{
+                            option1,
+                            option1Asset,
+                            option2,
+                            option2Asset,
+                            option3,
+                            option3Asset,
+                            option4,
+                            option4Asset
+                        }} questionNum={questionNum} onSelected={onSelected} initial={initial}/> :
+                        <DescriptiveQuestionInput questionNum={questionNum} onSubmit={onSubmit} initial={initial}/>
+                }
             </div>
         );
     };

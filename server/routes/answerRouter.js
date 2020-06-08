@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.route('/')
     .get(authController.protect, answerController.getAnswers)
-    .post(authController.protect, answerController.checkIsCreated, answerController.setStudent, answerController.createAnswer);
+    .post(authController.protect, answerController.checkIsCreated, answerController.createAnswer);
 
 router.route('/:id')
     .get(authController.protect, answerController.getAnswer)

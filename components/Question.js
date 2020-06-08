@@ -18,14 +18,16 @@ const Question =
          questionNum,
          initial,
          questionId,
-         token
+         token,
+         student
      }) => {
         const onSelected = async (option, setError, setReady) => {
             setReady(false);
             try {
                 await exams.post('/answers', {
                     question: questionId,
-                    answer: option
+                    answer: option,
+                    student
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -42,7 +44,8 @@ const Question =
             try {
                 await exams.post('/answers', {
                     question: questionId,
-                    answer: value
+                    answer: value,
+                    student
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`

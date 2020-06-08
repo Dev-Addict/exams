@@ -25,13 +25,6 @@ exports.checkIsCreated = catchRequest(
     }
 );
 
-exports.setStudent = catchRequest(
-    (req, res, next) => {
-        req.body.student = req.user._id;
-        next();
-    }
-);
-
 exports.deleteStudentAndExam = catchRequest(
     (req, res, next) => {
         req.body.student = undefined;

@@ -1,7 +1,7 @@
 import {Fragment, useState} from "react";
 
-const DescriptiveQuestionInput = ({onSubmit, questionNum}) => {
-    const [value, setValue] = useState('');
+const DescriptiveQuestionInput = ({onSubmit, questionNum, initial}) => {
+    const [value, setValue] = useState(initial || '');
     const [error, setError] = useState('');
     const [isReady, setReady] = useState(true);
 

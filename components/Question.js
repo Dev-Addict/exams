@@ -14,7 +14,8 @@ const Question =
          option4,
          option4Asset,
          type,
-         questionNum
+         questionNum,
+         initial
      }) => {
         const onSelected = (option, setError, setReady) => {};
 
@@ -38,8 +39,8 @@ const Question =
                                 option3Asset,
                                 option4,
                                 option4Asset
-                            }} questionNum={questionNum} onSelected={onSelected}/> :
-                            <DescriptiveQuestionInput questionNum={questionNum} onSubmit={onSubmit}/>
+                            }} questionNum={questionNum} onSelected={onSelected} initial={initial}/> :
+                            <DescriptiveQuestionInput questionNum={questionNum} onSubmit={onSubmit} initial={initial}/>
                     }
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import {Fragment, useState} from 'react';
 
-const TestRadioInput = ({options, onSelected, questionNum}) => {
-    const [selectedOption, setSelectedOption] = useState('');
+const TestRadioInput = ({options, onSelected, questionNum, initial}) => {
+    const [selectedOption, setSelectedOption] = useState(initial || '');
     const [error, setError] = useState('');
     const [isReady, setReady] = useState(true);
 

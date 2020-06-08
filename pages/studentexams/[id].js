@@ -10,7 +10,7 @@ const StudentExam = ({token, studentExam, questions}) => {
         );
 
     const renderQuestions = () => questions.map((question, index) => (
-        <Question questionNum={index + 1} questionId={questions._id} token={token} {...question}/>
+        <Question questionNum={index + 1} questionId={question._id} token={token} {...question} key={index}/>
     ));
 
     return (

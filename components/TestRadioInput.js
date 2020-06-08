@@ -8,7 +8,7 @@ const TestRadioInput = ({options, onSelected, questionNum, initial}) => {
     return (
         <Fragment>
             <div className="option-group">
-                <input type="radio" name={`question-${questionNum}-answer`} value="option1" onClick={() => {
+                <input type="radio" name={`question-${questionNum}-answer`} value="option1" onChange={() => {
                     setSelectedOption('option1');
                     onSelected('option1', setError, setReady);
                 }} checked={selectedOption === 'option1'} disabled={!isReady}/>
@@ -19,7 +19,7 @@ const TestRadioInput = ({options, onSelected, questionNum, initial}) => {
                 }
             </div>
             <div className="option-group">
-                <input type="radio" name={`question-${questionNum}-answer`} value="option2" onClick={() => {
+                <input type="radio" name={`question-${questionNum}-answer`} value="option2" onChange={() => {
                     setSelectedOption('option2');
                     onSelected('option2', setError, setReady);
                 }} checked={selectedOption === 'option2'} disabled={!isReady}/>
@@ -41,7 +41,7 @@ const TestRadioInput = ({options, onSelected, questionNum, initial}) => {
                 }
             </div>
             <div className="option-group">
-                <input type="radio" name={`question-${questionNum}-answer`} value="option4" onClick={() => {
+                <input type="radio" name={`question-${questionNum}-answer`} value="option4" onChange={() => {
                     setSelectedOption('option4');
                     onSelected('option4', setError, setReady);
                 }} checked={selectedOption === 'option4'} disabled={!isReady}/>

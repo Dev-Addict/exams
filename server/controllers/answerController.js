@@ -16,16 +16,12 @@ exports.checkIsCreated = catchRequest(
     async (req, res, next) => {
         const student = req.user._id;
         const question = req.body.question;
-        const answer = Answer.findOne({student, question});
+        const answer = await Answer.findOne({student, question});
         if (!answer) {
             return next();
         }
-        res.status(201).json({
-            status: 'success',
-            data: {
-                doc: answer
-            }
-        });
+        req.params.id = answer._id;
+        factory.updateOne(Answer)(req, res, next);
     }
 );
 

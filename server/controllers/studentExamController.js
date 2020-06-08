@@ -50,3 +50,12 @@ exports.setQuestions = catchRequest(
         next();
     }
 );
+
+exports.setDates = catchRequest(
+    async (req, res, next) => {
+        req.body.startDate = new Date();
+        const exam = await Exam.findById(req.body.exam);
+        req.body.endDate = new Date(Date.now() + exam.time * 60000);
+        next();
+    }
+);

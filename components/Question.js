@@ -1,7 +1,5 @@
-import {Formik, Form, Field} from 'formik';
-
 import TestRadioInput from "./TestRadioInput";
-import Input from "./Input";
+import DescriptiveQuestionInput from "./DescriptiveQuestionInput";
 
 const Question =
     ({
@@ -15,8 +13,13 @@ const Question =
          option3Asset,
          option4,
          option4Asset,
-         type
+         type,
+         questionNum
      }) => {
+        const onSelected = (option, setError, setReady) => {};
+
+        const onSubmit = (value, setError, setReady) => {};
+
         return (
             <div className="question-block">
                 <div className="question-question">
@@ -24,8 +27,8 @@ const Question =
                     {questionAsset &&
                     <img src={questionAsset} alt={question}/>
                     }
-                    <Formik initialValues={} onSubmit={}>
-                        {type === 'test' ?
+                    {
+                        type === 'test' ?
                             <TestRadioInput options={{
                                 option1,
                                 option1Asset,
@@ -35,9 +38,9 @@ const Question =
                                 option3Asset,
                                 option4,
                                 option4Asset
-                            }} name="answer"/> :
-                            <Input type={text} name="answer"/>}
-                    </Formik>
+                            }} questionNum={questionNum} onSelected={onSelected}/> :
+                            <DescriptiveQuestionInput questionNum={questionNum} onSubmit={onSubmit}/>
+                    }
                 </div>
             </div>
         );

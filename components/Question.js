@@ -1,5 +1,6 @@
 import TestRadioInput from "./TestRadioInput";
 import DescriptiveQuestionInput from "./DescriptiveQuestionInput";
+import exams from "../api/exams";
 
 const Question =
     ({
@@ -15,9 +16,26 @@ const Question =
          option4Asset,
          type,
          questionNum,
-         initial
+         initial,
+         questionId,
+         token
      }) => {
-        const onSelected = (option, setError, setReady) => {};
+        const onSelected = async (option, setError, setReady) => {
+            setReady(false);
+            try {
+                await exams.post('/answers', {
+                    question: questionId,
+                    answer: option
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+            } catch (err) {
+                setError(err.response.data.message);
+            }
+            setReady(true);
+        };
 
         const onSubmit = (value, setError, setReady) => {};
 

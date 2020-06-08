@@ -24,18 +24,20 @@ const Question =
                     {questionAsset &&
                     <img src={questionAsset} alt={question}/>
                     }
-                    {type === 'test' ?
-                        <TestRadioInput options={{
-                            option1,
-                            option1Asset,
-                            option2,
-                            option2Asset,
-                            option3,
-                            option3Asset,
-                            option4,
-                            option4Asset
-                        }} name="answer"/> :
-                        <Input type={text} name="answer"/>}
+                    <Formik initialValues={} onSubmit={}>
+                        {type === 'test' ?
+                            <TestRadioInput options={{
+                                option1,
+                                option1Asset,
+                                option2,
+                                option2Asset,
+                                option3,
+                                option3Asset,
+                                option4,
+                                option4Asset
+                            }} name="answer"/> :
+                            <Input type={text} name="answer"/>}
+                    </Formik>
                 </div>
             </div>
         );

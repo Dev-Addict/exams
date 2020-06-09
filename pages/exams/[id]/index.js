@@ -2,18 +2,19 @@ import ErrorPage from 'next/error';
 
 import ExamButtons from "../../../components/ExamButtons";
 import QuestionsList from "../../../components/QuestionsList";
+import BaseLayout from "../../../components/BaseLayout";
 import exams from "../../../api/exams";
 
-const Exam = ({id, questions}) => {
+const Exam = ({id, questions, auth}) => {
     if (!id)
         return (
             <ErrorPage statusCode={404}/>
         );
     return (
-        <div>
+        <BaseLayout auth={auth} title="Manage Exam">
             <ExamButtons id={id}/>
             <QuestionsList questions={questions} exam={id}/>
-        </div>
+        </BaseLayout>
     );
 };
 

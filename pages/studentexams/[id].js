@@ -2,6 +2,7 @@ import ErrorPage from "next/error";
 
 import BaseLayout from "../../components/BaseLayout";
 import Question from "../../components/Question";
+import ExamDetails from "../../components/ExamDetails";
 import exams from "../../api/exams";
 
 const StudentExam = ({token, studentExam, questions, answers, student, auth, exam}) => {
@@ -20,6 +21,7 @@ const StudentExam = ({token, studentExam, questions, answers, student, auth, exa
 
     return (
         <BaseLayout auth={auth} title={`Exam(${exam.name})`}>
+            <ExamDetails exam={exam} studentExam={studentExam}/>
             <div className="questions-container">
                 {renderQuestions()}
             </div>

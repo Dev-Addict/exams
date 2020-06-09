@@ -2,6 +2,7 @@ const factory = require('./handlerFactory');
 const Answer = require('../models/Answer');
 const StudentExam = require('../models/StudentExam');
 const catchRequest = require('../utils/catchRequest');
+const AppError = require('../utils/AppError');
 
 exports.getAnswers = factory.getAll(Answer);
 

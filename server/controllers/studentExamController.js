@@ -3,6 +3,7 @@ const StudentExam = require('../models/StudentExam');
 const Exam = require('../models/Exam');
 const Question = require('../models/Question');
 const catchRequest = require('../utils/catchRequest');
+const AppError = require('../utils/AppError');
 
 exports.getStudentExams = factory.getAll(StudentExam);
 

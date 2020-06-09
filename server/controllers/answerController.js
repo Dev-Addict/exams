@@ -37,7 +37,7 @@ exports.deleteStudentAndExam = catchRequest(
 
 exports.checkDate = catchRequest(
     async (req, res, next) => {
-        const studentExam = StudentExam.findOne({student: req.body.student, questions: req.body.question});
+        const studentExam = await StudentExam.findOne({student: req.body.student, questions: req.body.question});
         if (studentExam.startDate.getTime() < Date.now() < studentExam.endDate.getTime())
             return next();
         throw new AppError('Too late or too soon to make this request.');

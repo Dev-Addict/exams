@@ -4,10 +4,11 @@ import Cookie from 'js-cookie';
 
 import examsAPI from "../api/exams";
 
-const StudentExamsList = ({exams, user}) => {
+const StudentExamsList = ({exams, user, studentExams}) => {
     const [isSubmitting, setSubmitting] = useState(false);
     const renderExams = () => exams.map(exam => {
         const [error, setError] = useState('');
+        const studentExam = studentExams[studentExams.findIndex(studentExam => studentExam.exam === exam._id)];
         return (
             <div className="student-card" key={exam._id}>
                 <div className="student-card-title">{exam.name}<sub>{exam.description}</sub></div>
@@ -25,11 +26,11 @@ const StudentExamsList = ({exams, user}) => {
                     End
                     At: {new Date(exam.endAt).toDateString()} {new Date(exam.endAt).getHours()}:{new Date(exam.endAt).getMinutes()}
                 </div>
-                {new Date(exam.startAt).getTime() < Date.now() && new Date(exam.endAt).getTime() > Date.now() &&
+                {new Date(exam.startAt).getTime() < Date.now() && new Date(exam.endAt).getTime() > Date.now() && !studentExam &&
                 <button className="student-card-button" disabled={isSubmitting} onClick={() => {
                     setSubmitting(true);
                     examsAPI.post('/studentexams', {
-                        exam : exam._id,
+                        exam: exam._id,
                         student: user._id
                     }, {
                         headers: {
@@ -43,6 +44,13 @@ const StudentExamsList = ({exams, user}) => {
                     });
                 }}>
                     Join Exam
+                </button>
+                }
+                {studentExam && new Date(studentExam.startDate).getTime() < Date.now() < new Date(studentExam.endDate).getTime() &&
+                <button className="student-card-button" disabled={isSubmitting} onClick={() => {
+                    Router.push(`/studentexams/${studentExam._id}`);
+                }}>
+                    Continue Exam
                 </button>
                 }
                 <div className="error">{error}</div>

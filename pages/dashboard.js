@@ -4,7 +4,7 @@ import AdminDashboard from "../components/AdminDashboard";
 import StudentDashboard from "../components/StudentDashboard";
 import exams from "../api/exams";
 
-const Dashboard = ({auth, users, exams, user}) => {
+const Dashboard = ({auth, users, exams, user, studentExams}) => {
     if (process.browser && !auth.isSignedIn) {
         Router.push('/');
         return (<div/>);
@@ -18,7 +18,7 @@ const Dashboard = ({auth, users, exams, user}) => {
     }
 
     return (
-        <StudentDashboard auth={auth} exams={exams} user={user}/>
+        <StudentDashboard auth={auth} exams={exams} user={user} studentExams={studentExams}/>
     );
 };
 
@@ -26,6 +26,7 @@ const Dashboard = ({auth, users, exams, user}) => {
 Dashboard.getInitialProps = async (context, {user}, token) => {
     let users = [];
     let examsData = [];
+    let studentExams = [];
     if (user) {
         if (user.rote === 'admin') {
             try {
@@ -64,9 +65,20 @@ Dashboard.getInitialProps = async (context, {user}, token) => {
         } catch (err) {
             examsData = [];
         }
+        try {
+            const res = await exams.get(`/studentexams?student=${user._id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            studentExams = res.data.data.docs;
+        } catch (err) {
+            studentExams = [];
+        }
         return {
             users,
             exams: examsData.filter(exam => user.roles.includes(exam.for)),
+            studentExams,
             token,
             user
         };

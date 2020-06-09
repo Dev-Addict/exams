@@ -1,5 +1,6 @@
 const factory = require('./handlerFactory');
 const Answer = require('../models/Answer');
+const StudentExam = require('../models/StudentExam');
 const catchRequest = require('../utils/catchRequest');
 
 exports.getAnswers = factory.getAll(Answer);
@@ -28,7 +29,16 @@ exports.checkIsCreated = catchRequest(
 exports.deleteStudentAndExam = catchRequest(
     (req, res, next) => {
         req.body.student = undefined;
-        req.body.exam = undefined;
+        req.body.question = undefined;
         next();
+    }
+);
+
+exports.checkDate = catchRequest(
+    async (req, res, next) => {
+        const studentExam = StudentExam.findOne({student: req.body.student, questions: req.body.question});
+        if (studentExam.startDate.getTime() < Date.now() < studentExam.endDate.getTime())
+            return next();
+        throw new AppError('Too late or too soon to make this request.');
     }
 );

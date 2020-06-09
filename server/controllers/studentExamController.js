@@ -66,9 +66,6 @@ exports.checkDate = catchRequest(
         if (exam.startAt.getTime() < Date.now() < exam.endAt.getTime()) {
             return next();
         }
-        res.status(400).json({
-            status: 'fail',
-            message: 'Too late or too soon to start exam'
-        });
+        throw new AppError('Too late or too soon to make this request.');
     }
 );

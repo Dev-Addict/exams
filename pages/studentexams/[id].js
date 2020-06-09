@@ -4,7 +4,7 @@ import BaseLayout from "../../components/BaseLayout";
 import Question from "../../components/Question";
 import exams from "../../api/exams";
 
-const StudentExam = ({token, studentExam, questions, answers, student, auth}) => {
+const StudentExam = ({token, studentExam, questions, answers, student, auth, exam}) => {
     if (!studentExam)
         return (
             <ErrorPage statusCode={404}/>
@@ -19,7 +19,7 @@ const StudentExam = ({token, studentExam, questions, answers, student, auth}) =>
     });
 
     return (
-        <BaseLayout auth={auth} title="Exam">
+        <BaseLayout auth={auth} title={`Exam(${exam.name})`}>
             <div className="questions-container">
                 {renderQuestions()}
             </div>
@@ -31,6 +31,7 @@ StudentExam.getInitialProps = async ({query: {id}, res: response}, {user}, token
     let studentExam;
     let questions;
     let answers;
+    let exam;
     if (token) {
         if (!/^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i.test(id)) {
             if (response)
@@ -48,54 +49,62 @@ StudentExam.getInitialProps = async ({query: {id}, res: response}, {user}, token
         } catch (err) {
             if (response)
                 response.status(404);
-            studentExam = undefined;
+            return {};
         }
-        if (studentExam) {
-            try {
-                const res = await exams.get(`/questions?exam=${studentExam.exam}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+        try {
+            const res = await exams.get(`/questions?exam=${studentExam.exam}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
 
-                questions = res.data.data.docs;
-            } catch (err) {
-                if (response)
-                    response.status(404);
-                questions = undefined;
-            }
-            try {
-                const res = await exams.get(`/answers?student=${user._id}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+            questions = res.data.data.docs;
+        } catch (err) {
+            if (response)
+                response.status(404);
+            questions = undefined;
+        }
+        try {
+            const res = await exams.get(`/answers?student=${user._id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
 
-                answers = res.data.data.docs;
-            } catch (err) {
-                if (response)
-                    response.status(404);
-                answers = undefined;
-            }
+            answers = res.data.data.docs;
+        } catch (err) {
+            if (response)
+                response.status(404);
+            answers = undefined;
         }
-        if (questions) {
-            questions = questions.filter(question => studentExam.questions.includes(question._id));
-        }
-        if (answers && questions) {
-            answers = answers.filter(answer => questions.map(({_id}) => _id).includes(answer.question));
-        }
-        return {
-            studentExam,
-            questions,
-            answers,
-            student: user._id,
-            token
+        try {
+            const res = await exams.get(`/exams/${studentExam.exam}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            exam = res.data.data.doc;
+        } catch (err) {
+            if (response)
+                response.status(404);
+            exam = undefined;
         }
     }
-    if (response) {
-        response.status(404);
+    if (questions) {
+        questions = questions.filter(question => studentExam.questions.includes(question._id));
     }
-    return {};
+    if (answers && questions) {
+        answers = answers.filter(answer => questions.map(({_id}) => _id).includes(answer.question));
+    }
+    return {
+        studentExam,
+        questions,
+        answers,
+        student: user._id,
+        exam,
+        token
+    };
 };
 
 export default StudentExam;

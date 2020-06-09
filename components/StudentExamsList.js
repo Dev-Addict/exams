@@ -1,10 +1,28 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Router from "next/router";
 import Cookie from 'js-cookie';
 
 import examsAPI from "../api/exams";
 
+const showFormattedTime = time => `${
+    Math.floor(time / 1000 / 60 / 60 / 24)
+}:${
+    Math.floor(time / 1000 / 60 / 60 % 24)
+}:${
+    Math.floor(time / 1000 / 60 % 60)
+}:${
+    Math.floor(time / 1000 % 60)
+}`;
+
 const StudentExamsList = ({exams, user, studentExams}) => {
+    const [time, setTime] = useState(Date.now());
+    const setTimeLoop = () => {
+        setTime(Date.now());
+        setTimeout(setTimeLoop, 1000)
+    };
+    useEffect(() => {
+        setTimeLoop();
+    }, []);
     const [isSubmitting, setSubmitting] = useState(false);
     const renderExams = () => exams.map(exam => {
         const [error, setError] = useState('');
@@ -26,6 +44,21 @@ const StudentExamsList = ({exams, user, studentExams}) => {
                     End
                     At: {new Date(exam.endAt).toDateString()} {new Date(exam.endAt).getHours()}:{new Date(exam.endAt).getMinutes()}
                 </div>
+                {new Date(exam.startAt).getTime() > Date.now() &&
+                <div className="student-card-detail">
+                    Starts In: {showFormattedTime(new Date(exam.startAt).getTime() - Date.now())}
+                </div>
+                }
+                {studentExam && new Date(studentExam.endDate).getTime() > Date.now() &&
+                <div className="student-card-detail">
+                    Ends In: {showFormattedTime(new Date(studentExam.endDate).getTime() - Date.now())}
+                </div>
+                }
+                {!studentExam && new Date(exam.endAt).getTime() > Date.now() &&
+                <div className="student-card-detail">
+                    Ends In: {showFormattedTime(new Date(exam.endAt).getTime() - Date.now())}
+                </div>
+                }
                 {new Date(exam.startAt).getTime() < Date.now() && new Date(exam.endAt).getTime() > Date.now() && !studentExam &&
                 <button className="student-card-button" disabled={isSubmitting} onClick={() => {
                     setSubmitting(true);
@@ -46,7 +79,7 @@ const StudentExamsList = ({exams, user, studentExams}) => {
                     Join Exam
                 </button>
                 }
-                {studentExam && new Date(studentExam.startDate).getTime() < Date.now() < new Date(studentExam.endDate).getTime() &&
+                {studentExam && Date.now() < new Date(studentExam.endDate).getTime() &&
                 <button className="student-card-button" disabled={isSubmitting} onClick={() => {
                     Router.push(`/studentexams/${studentExam._id}`);
                 }}>
